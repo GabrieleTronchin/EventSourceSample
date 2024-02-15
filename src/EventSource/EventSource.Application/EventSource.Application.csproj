@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EventSource.Domain\EventSource.Domain.csproj" />
+    <ProjectReference Include="..\EventSource.Persistence\EventSource.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
