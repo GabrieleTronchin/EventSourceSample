@@ -1,35 +1,41 @@
 version: '3'
 
 services:
-
-  db-mssqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    privileged: true
+  postgres:
+    container_name: postgres_container
+    image: postgres
     environment:
-     - ACCEPT_EULA=Y
-     - MSSQL_DATA_DIR=/var/opt/sqlserver/data
-     - MSSQL_LOG_DIR=/var/opt/sqlserver/log
-     - MSSQL_BACKUP_DIR=/var/opt/sqlserver/backup
-     - MSSQL_SA_PASSWORD=Password12345
-    restart: always
-    networks:
-     - default
-    ports:
-      - '1433:1433'
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /data/postgres
     volumes:
-      - sql-server-data:/var/opt/mssql/
-      - sqldata:/var/opt/sqlserver/data
-      - sqllog:/var/opt/sqlserver/log
-      - sqlbackup:/var/opt/sqlserver/backup
-      - /c/docker/shared:/usr/shared
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - postgres
+    restart: unless-stopped
 
 networks:
-  default:
+  postgres:
     driver: bridge
 
 volumes:
-  sql-server-data:
-    driver: local
-  sqldata:
-  sqllog:
-  sqlbackup:
+    postgres:
+    pgadmin:

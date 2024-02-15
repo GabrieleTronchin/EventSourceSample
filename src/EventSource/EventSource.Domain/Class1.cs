@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1
+﻿namespace EventSource.Domain
 {
     public class Class1
     {
