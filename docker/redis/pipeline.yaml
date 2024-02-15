@@ -1,0 +1,18 @@
+trigger: 
+    tags:
+        include:
+            - 'V*'
+    branches:
+        include: 
+            - master
+            - dev
+        exclude:
+            - feature/*
+    paths:
+        include: 
+            - docker/redis*
+extends:
+  template: /pipelines/project.template.build.yaml
+  parameters:
+    projectFolder: docker/redis
+    projectContext: docker/redis

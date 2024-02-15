@@ -1,0 +1,82 @@
+version: '3'
+
+services:
+
+  elasticsearch:
+   container_name: elasticsearch
+   image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+   ports:
+    - 9200:9200
+   volumes:
+    - elasticsearch-data:/usr/share/elasticsearch/data
+   environment:
+    - xpack.monitoring.enabled=true
+    - xpack.watcher.enabled=false
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - discovery.type=single-node
+   labels:
+      co.elastic.metrics/module: "elasticsearch"
+      co.elastic.metrics/hosts: "http://localhost:9200"
+      co.elastic.metrics/metricsets: "node_stats,node"
+   restart: unless-stopped
+   networks:
+    - default
+
+  kibana:
+   container_name: kibana
+   image: docker.elastic.co/kibana/kibana:7.9.2
+   ports:
+    - 5601:5601
+   depends_on:
+    - elasticsearch
+   environment:
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+   restart: unless-stopped
+   networks:
+    - default
+
+  metricbeat:
+    image:  900879236479.dkr.ecr.eu-west-1.amazonaws.com/compass20-metricbeat:dev-latest
+    container_name: metricbeat
+    pull_policy: always
+    user: root
+    networks:
+      - default
+    volumes:
+      - /proc:/hostfs/proc:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /:/hostfs:ro
+      - /run/user/1000/podman/podman.sock:/var/run/docker.sock:z
+      - metricbeat:/usr/share/metricbeat/data
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+      - KIBANA_HOST=kibana
+      - MSSQL_SERVICE=${COMPASS_DLL_IP}
+      - MSSQL_USER=${COMPASS_DLL_USER}
+      - MSSQL_PASSWORD=${COMPASS_DLL_PASSWORD}
+    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    deploy:
+      mode: global
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    pull_policy: always
+    container_name: portainer
+    restart: unless-stopped
+    privileged: true
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /run/user/1000/podman/podman.sock:/var/run/docker.sock:z
+    ports:
+      - "9000:9000"
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  portainer_data:
+  elasticsearch-data:
+  metricbeat:

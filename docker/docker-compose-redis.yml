@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  redis-monitoring:
+    image: redislabs/redisinsight:latest
+    pull_policy: always
+    restart: unless-stopped
+    ports:
+      - '8001:8001'
+
+  redis:  
+    image: redis:latest
+    pull_policy: always
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  portainer_data:
+  elasticsearch-data:
+  metricbeat:
