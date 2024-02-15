@@ -1,39 +1,12 @@
-# Template Docker Compose Setup
+# Sample project Include Marten Db (Postgres), CQRS, WebAPI
 
-This is a sample repository act as a template to setup a Docker Compose enviroment.
+> Marten is a .NET library that allows developers to use the Postgresql database as both a document database and a fully-featured event store -- with the document features serving as the out-of-the-box mechanism for projected "read side" views of your events.
+
+- https://martendb.io
 
 ## Overview
 
-Docker compose explanation:
-
-### MS SQL Server
-
-docker-compose-sqlserver
-
-
-### Redis
-
-docker-compose-redis
-
-- [Redis](https://redis.io/docs/install/)
-- Redis-monitoring
-
-### Monitoring
-
-docker-compose-monitoring
-
-Contains:
-- [Metricbeat](https://www.elastic.co/beats/metricbeat)
-- [Elasticsearch](https://www.elastic.co/)
-- [Kibana](https://www.elastic.co/kibana)
-- [Portainer](https://www.portainer.io/)
-
-
-
-## Other Utilities
-
-### Self Signed Certificate
-For test purpose use Script: selfsigned-certs-generator.ps1
+TODO
 
 ### Usefull links
 
