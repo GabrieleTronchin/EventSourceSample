@@ -1,4 +1,4 @@
-docker compose --env-file ./config/.env -f docker-compose.yml -d
+docker compose --env-file ./config/.env -f docker-compose.yml up -d
 
 switch (Read-Host 'Remove unused images (Y/n)'){
     Y { 

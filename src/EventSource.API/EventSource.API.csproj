@@ -17,4 +17,8 @@
     <ProjectReference Include="..\EventSource.Application\EventSource.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>
