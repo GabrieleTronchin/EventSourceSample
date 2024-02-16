@@ -1,4 +1,5 @@
 ﻿using EventSource.Application.Orders.Commands;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace EventSource.Presentation.Orders;
@@ -13,14 +14,13 @@ public static class OrderModel
             //TODO Define Query Commands
             var result = await sender.Send(default);
             return Results.Ok(result);
-        });
+        }).WithOpenApi();
 
 
-        app.MapPost("/orders", async (CreateOrderRequest request, ISender sender) =>
+        app.MapPost("/orders", async ([FromBody] CreateOrderRequest request, ISender sender) =>
         {
 
-            CreateOrderCommand createOrderCommand = new CreateOrderCommand();
-            //TODO Map request to command
+            CreateOrderCommand createOrderCommand = new CreateOrderCommand() { Description = request.Description };
 
             var result = await sender.Send(createOrderCommand);
 

@@ -1,7 +1,7 @@
 ﻿namespace EventSource.Presentation.Orders
 {
-    public class CreateOrderRequest
+    public record CreateOrderRequest
     {
-
+        public required string Description { get; init; }
     }
 }

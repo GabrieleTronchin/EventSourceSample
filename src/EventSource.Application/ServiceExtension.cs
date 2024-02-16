@@ -10,17 +10,17 @@ public static class ServicesExtensions
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServicesExtensions).Assembly));
 
-        services.AddMassTransit(x =>
-        {
-            x.SetMartenSagaRepositoryProvider();
+        //services.AddMassTransit(x =>
+        //{
+        //    x.SetMartenSagaRepositoryProvider();
 
-            var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
+        //    var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
 
-            x.AddSagaStateMachines(entryAssembly);
+        //    x.AddSagaStateMachines(entryAssembly);
 
-            x.AddSagaRepository<OrderState>()
-                .MartenRepository();
-        });
+        //    x.AddSagaRepository<OrderState>()
+        //        .MartenRepository();
+        //});
 
         services.AddPersistence();
         return services;
