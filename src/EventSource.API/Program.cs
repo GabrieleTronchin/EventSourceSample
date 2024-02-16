@@ -1,7 +1,7 @@
-using EventSource.Application.Account;
 using EventSource.Application;
+using EventSource.Application.Account;
 using EventSource.Presentation.Orders;
-using Microsoft.AspNetCore.OpenApi;
+
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -16,10 +16,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
-
 var myApiGroup = app.MapGroup("/v1");
-myApiGroup.AddForecastModelEndpoint();
+
+myApiGroup.AddOrdersEnpoint();
 
 if (app.Environment.IsDevelopment())
 {

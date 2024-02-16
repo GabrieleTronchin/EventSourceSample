@@ -11,7 +11,7 @@ public class OrderEntity
         if (string.IsNullOrWhiteSpace(description))
             throw new ArgumentNullException("description");
 
-        return new OrderEntity() { Id=Guid.NewGuid(), Description=description };
+        return new OrderEntity() { Id = Guid.NewGuid(), Description = description };
     }
 
     public void RequestPayment()

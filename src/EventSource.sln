@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSource.Persistence", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSource.Domain", "EventSource.Domain\EventSource.Domain.csproj", "{5D53EE87-0B69-43A5-AC3A-9BB7EEBA2459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSource.Presentation", "EventSource.Presentation\EventSource.Presentation.csproj", "{F3A6ADC0-ED33-46DD-A730-3B6705B6BCBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSource.Presentation", "EventSource.Presentation\EventSource.Presentation.csproj", "{F3A6ADC0-ED33-46DD-A730-3B6705B6BCBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

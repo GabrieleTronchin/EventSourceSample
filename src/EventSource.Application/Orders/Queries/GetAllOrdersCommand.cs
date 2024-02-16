@@ -2,7 +2,7 @@
 
 namespace EventSource.Application.Orders.Queries
 {
-    public class GetOrderCommand : IRequest<IList<OrderReadModel>>
+    public class GetAllOrdersCommand : IRequest<IEnumerable<OrderReadModel>>
     {
     }
 }

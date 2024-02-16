@@ -1,7 +1,4 @@
 ﻿using EventSource.Application.Orders.Queries;
-using EventSource.Domain.Order;
-using EventSource.Domain.Primitives;
-using EventSource.Persistence;
 using MediatR;
 
 namespace EventSource.Application.Orders.Handlers;
@@ -9,28 +6,31 @@ namespace EventSource.Application.Orders.Handlers;
 /// <summary>
 /// Just a sample of read model
 /// </summary>
-public class OrderQueriesHandler : IRequestHandler<GetOrderCommand, IList<OrderReadModel>>
+public class OrderQueriesHandler : IRequestHandler<GetAllOrdersCommand, IEnumerable<OrderReadModel>>,
+                                   IRequestHandler<GetOrdersByDescriptionCommand, IEnumerable<OrderReadModel>>
 {
-    private readonly IOrderRepository _repository;
+    private readonly IOrderQueryableRepository _repository;
 
-    public OrderQueriesHandler(IOrderRepository orderRepository)
+    public OrderQueriesHandler(IOrderQueryableRepository orderRepository)
     {
         _repository = orderRepository;
     }
 
-    public async Task<IList<OrderReadModel>> Handle(GetOrderCommand request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<OrderReadModel>> Handle(GetAllOrdersCommand request, CancellationToken cancellationToken)
     {
-        var orders = await _repository.GetAsync(null, cancellationToken);
-
-
-        //TODO better implemenetation
-        var readModelOder = new List<OrderReadModel>();
-
-        foreach (var item in orders)
-        {
-           readModelOder.Add(new OrderReadModel() { Id = item.Id , Description = item.Description});
-        }
-
-        return readModelOder;
+        return _repository.Get();
     }
+
+
+    public async Task<IEnumerable<OrderReadModel>> Handle(GetOrdersByDescriptionCommand request, CancellationToken cancellationToken)
+    {
+
+        if (string.IsNullOrWhiteSpace(request.Description))
+            throw new NotImplementedException();
+
+
+        return _repository.Get(x => x.Description == request.Description, cancellationToken);
+
+    }
+
 }

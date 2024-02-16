@@ -1,5 +1,5 @@
-﻿using EventSource.Persistence;
-using MassTransit;
+﻿using EventSource.Application.Orders;
+using EventSource.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EventSource.Application;
@@ -23,6 +23,8 @@ public static class ServicesExtensions
         //});
 
         services.AddPersistence();
+        services.AddTransient<IOrderQueryableRepository, OrderQueryableRepository>();
+
         return services;
 
     }

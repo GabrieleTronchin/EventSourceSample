@@ -1,4 +1,5 @@
 ﻿using EventSource.Domain.Order;
+using EventSource.Domain.Primitives;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,11 +11,12 @@ public static class ServicesExtensions
     {
         services.AddMarten(options =>
         {
-            const string connectionString = "host=localhost;port=5432;database=orders;username=web;password=webpw;";
+            //TODO Move connection string on Appsettings
+            const string connectionString = "host=localhost;port=5432;database=orders;username=sa;password=MySecretPassword1234;";
             options.Connection(connectionString);
         });
 
-        services.AddTransient<IOrderRepository, OrderRepository>();
+        services.AddTransient<IRepository<OrderEntity>, OrderRepository>();
 
         return services;
     }

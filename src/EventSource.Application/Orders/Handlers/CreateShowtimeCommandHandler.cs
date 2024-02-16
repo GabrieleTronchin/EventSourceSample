@@ -1,6 +1,6 @@
 ﻿using EventSource.Application.Orders.Commands;
 using EventSource.Domain.Order;
-using EventSource.Persistence;
+using EventSource.Domain.Primitives;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -9,9 +9,9 @@ namespace EventSource.Application.Orders.Handlers;
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, CreateOrderCommandComplete>
 {
     private readonly ILogger<CreateOrderCommandHandler> _logger;
-    private readonly IOrderRepository _repository;
+    private readonly IRepository<OrderEntity> _repository;
 
-    public CreateOrderCommandHandler(ILogger<CreateOrderCommandHandler> logger, IOrderRepository orderRepository)
+    public CreateOrderCommandHandler(ILogger<CreateOrderCommandHandler> logger, IRepository<OrderEntity> orderRepository)
     {
         _logger = logger;
         _repository = orderRepository;
