@@ -1,4 +1,4 @@
-﻿namespace Cinema.Application.Primitives;
+﻿namespace EventSource.Application.Primitives;
 
 public abstract class IntegrationEvent
 {

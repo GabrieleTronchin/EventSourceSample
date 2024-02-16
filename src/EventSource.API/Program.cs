@@ -1,5 +1,5 @@
 using EventSource.Application.Account;
-using EventSource.Presentation.Forecast;
+using EventSource.Presentation.Orders;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 

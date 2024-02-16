@@ -15,10 +15,6 @@
     <ProjectReference Include="..\EventSource.Persistence\EventSource.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Account\Events\" />
-  </ItemGroup>
-
 
 	<ItemGroup>
     <PackageReference Include="MassTransit.Marten" Version="8.1.3" />
