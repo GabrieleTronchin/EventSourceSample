@@ -1,4 +1,6 @@
 ﻿using EventSource.Application.Orders.Commands;
+using EventSource.Domain.Order;
+using EventSource.Persistence;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -7,44 +9,21 @@ namespace EventSource.Application.Orders.Handlers;
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, CreateOrderCommandComplete>
 {
     private readonly ILogger<CreateOrderCommandHandler> _logger;
+    private readonly IOrderRepository _repository;
 
-
-    public CreateOrderCommandHandler(ILogger<CreateOrderCommandHandler> logger)
+    public CreateOrderCommandHandler(ILogger<CreateOrderCommandHandler> logger, IOrderRepository orderRepository)
     {
         _logger = logger;
+        _repository = orderRepository;
     }
 
-    public Task<CreateOrderCommandComplete> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+    public async Task<CreateOrderCommandComplete> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        OrderEntity order = OrderEntity.Create(request.Description);
+
+        await _repository.AddAsync(order);
+
+        return new CreateOrderCommandComplete() { Id = order.Id };
     }
-
-    //public async Task<CreateShowtimeCommandComplete> Handle(CreateShowtimeCommand request, CancellationToken cancellationToken)
-    //{
-    //    try
-    //    {
-    //        //_logger.LogDebug("Starting handling an event at '{CommandHandler}'", nameof(CreateShowtimeCommandHandler));
-
-    //        ////Create Movie
-    //        //var movie = MovieEntity.Create(request.Movie.Title, request.Movie.Stars, request.Movie.ImdbId, request.Movie.ReleaseDate);
-
-    //        //var auditoriumDefinition = await _auditoriumRepository.GetAsync(request.AuditoriumId, cancellationToken)
-    //        //                           ?? throw new InvalidOperationException("Auditorium not exit");
-
-    //        //var showtime = ShowtimeEntity.Create(auditoriumDefinition, movie, request.SessionDate);
-
-    //        //await _showtimesRepository.AddAsync(showtime);
-
-    //        //await _showtimesRepository.SaveChangesAsync();
-
-    //        //return new CreateShowtimeCommandComplete() { Id = showtime.Id };
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        _logger.LogError(ex, "An error occurred at {CommandHandler}", nameof(CreateShowtimeCommandHandler));
-    //        throw;
-    //    }
-    //}
-
 
 }

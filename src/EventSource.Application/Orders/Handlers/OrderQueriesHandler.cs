@@ -1,4 +1,7 @@
 ﻿using EventSource.Application.Orders.Queries;
+using EventSource.Domain.Order;
+using EventSource.Domain.Primitives;
+using EventSource.Persistence;
 using MediatR;
 
 namespace EventSource.Application.Orders.Handlers;
@@ -8,26 +11,26 @@ namespace EventSource.Application.Orders.Handlers;
 /// </summary>
 public class OrderQueriesHandler : IRequestHandler<GetOrderCommand, IList<OrderReadModel>>
 {
+    private readonly IOrderRepository _repository;
 
-    public OrderQueriesHandler()
+    public OrderQueriesHandler(IOrderRepository orderRepository)
     {
+        _repository = orderRepository;
     }
 
     public async Task<IList<OrderReadModel>> Handle(GetOrderCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var orders = await _repository.GetAsync(null, cancellationToken);
 
-        ////in real word scenario the idea is to compose query using TSQL and Dapper
-        //var allAuditoriums = await _repository.GetAllAsync(null, cancellationToken);
 
-        //var readModelAuditorium = new List<OrderReadModel>();
+        //TODO better implemenetation
+        var readModelOder = new List<OrderReadModel>();
 
-        //foreach (var item in allAuditoriums)
-        //{
-        //    var seats = item.Seats.Select(s => new SeatReadModel() { Row = s.RowNumber, SeatNumber = s.SeatNumber });
-        //    readModelAuditorium.Add(new OrderReadModel() { Id = item.Id, Seats = seats });
-        //}
+        foreach (var item in orders)
+        {
+           readModelOder.Add(new OrderReadModel() { Id = item.Id , Description = item.Description});
+        }
 
-        //return readModelAuditorium;
+        return readModelOder;
     }
 }

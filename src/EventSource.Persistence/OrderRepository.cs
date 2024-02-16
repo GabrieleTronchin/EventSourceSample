@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace EventSource.Persistence
 {
-    public class OrderRepository(DocumentStore store) : IOrderRepository
+    public class OrderRepository(IQuerySession querySession, IDocumentStore store) : IOrderRepository
     {
 
         //TODO Implement in a correct way
@@ -12,21 +12,19 @@ namespace EventSource.Persistence
 
         public async Task AddAsync(OrderEntity entity)
         {
-            using var session = store.LightweightSession();
+            using var session = await store.LightweightSerializableSessionAsync();
             session.Store(entity);
             await session.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<OrderEntity>> GetAsync(Expression<Func<OrderEntity, bool>> filter, CancellationToken cancel)
         {
-            using var session = store.LightweightSession();
-            return session.Query<OrderEntity>().Where(filter);
+            return querySession.Query<OrderEntity>().Where(filter);
         }
 
         public async Task<OrderEntity?> GetSingleAsync(Guid id, CancellationToken cancel)
         {
-            using var session = store.LightweightSession();
-            return await session.Query<OrderEntity>().Where(x => x.Id == id).FirstOrDefaultAsync(cancel);
+            return await querySession.Query<OrderEntity>().Where(x => x.Id == id).FirstOrDefaultAsync(cancel);
         }
 
         public Task SaveChangesAsync()

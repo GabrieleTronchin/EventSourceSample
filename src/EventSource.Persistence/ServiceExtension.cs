@@ -1,4 +1,5 @@
-﻿using Marten;
+﻿using EventSource.Domain.Order;
+using Marten;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EventSource.Persistence;
@@ -12,6 +13,8 @@ public static class ServicesExtensions
             const string connectionString = "host=localhost;port=5432;database=orders;username=web;password=webpw;";
             options.Connection(connectionString);
         });
+
+        services.AddTransient<IOrderRepository, OrderRepository>();
 
         return services;
     }
