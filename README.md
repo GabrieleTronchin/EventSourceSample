@@ -6,9 +6,17 @@
 
 ## Overview
 
-TODO
+Minimal API
+CQRS
+EventSource
+PostgressDB
+DDD
+
+
+//TODO Extract a template for DDD from this proj
+//TODO Extract a template for DDD + EventSource
+//Extract Primitives in Shared prj
 
 ### Usefull links
 
 [Rancher Desktop](https://rancherdesktop.io/): a free and comercial use for docker and/or Kubernates in local
-
