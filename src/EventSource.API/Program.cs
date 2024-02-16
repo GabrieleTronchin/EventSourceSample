@@ -1,6 +1,5 @@
-using System.Text.Json.Serialization;
-using EventSource.Application;
 using EventSource.Application.Account;
+using EventSource.Presentation.Forecast;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -11,10 +10,8 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 var app = builder.Build();
 
-
-
-var todosApi = app.MapGroup("/todos");
-todosApi.AddForecastModelEndpoint();
+var myApiGroup = app.MapGroup("/v1");
+myApiGroup.AddForecastModelEndpoint();
 
 app.Run();
 

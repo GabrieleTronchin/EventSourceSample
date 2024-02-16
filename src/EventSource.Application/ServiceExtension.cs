@@ -1,18 +1,14 @@
-﻿using MassTransit;
+﻿using EventSource.Persistence;
+using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventSource.Application;
 
 public static class ServicesExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
-{
-    services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServicesExtensions).Assembly));
+    {
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServicesExtensions).Assembly));
 
         //services.AddDomainNotification();
         services.AddMassTransit(x =>
@@ -40,7 +36,7 @@ public static class ServicesExtensions
         //services.AddQuartzHostedService();
 
         services.AddPersistence();
-    return services;
+        return services;
 
     }
 }

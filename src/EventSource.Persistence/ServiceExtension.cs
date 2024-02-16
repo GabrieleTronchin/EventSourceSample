@@ -1,14 +1,7 @@
 ﻿using Marten;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Weasel.Core;
 
-namespace EventSource.Application;
+namespace EventSource.Persistence;
 
 public static class ServicesExtensions
 {

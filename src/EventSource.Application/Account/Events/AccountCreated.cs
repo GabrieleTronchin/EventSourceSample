@@ -1,5 +1,3 @@
-using EventSource.Domain;
-
 namespace EventSource.Application.Account.Events
 {
     public class AccountCreated

@@ -1,5 +1,3 @@
-using System;
-
 namespace EventSource.Application.Account.Events
 {
     public abstract class Transaction
