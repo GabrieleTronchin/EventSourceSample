@@ -19,7 +19,7 @@ public class OrderQueriesHandler : IRequestHandler<GetAllOrdersCommand, IEnumera
 
     public async Task<IEnumerable<OrderReadModel>> Handle(GetAllOrdersCommand request, CancellationToken cancellationToken)
     {
-        return _repository.Get();
+        return _repository.Get().Select(x => new OrderReadModel() { Id=x.Id, Description=x.Description });
     }
 
 
@@ -27,10 +27,12 @@ public class OrderQueriesHandler : IRequestHandler<GetAllOrdersCommand, IEnumera
     {
 
         if (string.IsNullOrWhiteSpace(request.Description))
-            throw new NotImplementedException();
+            throw new ArgumentNullException(nameof(request.Description));
 
 
-        return _repository.Get(x => x.Description == request.Description, cancellationToken);
+        return _repository
+                        .Get(x => x.Description == request.Description, cancellationToken)
+                        .Select(x => new OrderReadModel() { Id = x.Id, Description = x.Description });
 
     }
 
