@@ -1,4 +1,4 @@
-﻿using EventSource.Application.Orders;
+﻿using EventSource.Domain.Order;
 using EventSource.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 

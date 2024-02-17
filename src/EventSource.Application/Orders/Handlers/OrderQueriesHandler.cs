@@ -1,4 +1,5 @@
 ﻿using EventSource.Application.Orders.Queries;
+using EventSource.Domain.Order;
 using MediatR;
 
 namespace EventSource.Application.Orders.Handlers;

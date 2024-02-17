@@ -18,10 +18,46 @@ public static class OrderModel
         }).WithOpenApi();
 
 
-        app.MapPost("/orders", async ([FromBody] CreateOrderRequest request, ISender sender) =>
+        app.MapPost("/createNewOrder", async ([FromBody] CreateOrderRequest request, ISender sender) =>
         {
 
             CreateOrderCommand createOrderCommand = new CreateOrderCommand() { Description = request.Description };
+
+            var result = await sender.Send(createOrderCommand);
+
+            return Results.Created();
+
+        });
+
+
+        app.MapPost("/orderReady", async ([FromBody] OrderReadyRequest request, ISender sender) =>
+        {
+
+            OrderReadyCommand createOrderCommand = new OrderReadyCommand() { Id = request.OrderId };
+
+            var result = await sender.Send(createOrderCommand);
+
+            return Results.Created();
+
+        });
+
+        app.MapPost("/acceptOrder", async ([FromBody] AcceptOrderRequest request, ISender sender) =>
+        {
+
+            AcceptOrderCommand createOrderCommand = new AcceptOrderCommand() { Id = request.OrderId };
+
+            var result = await sender.Send(createOrderCommand);
+
+            return Results.Created();
+
+        });
+
+
+
+        app.MapPost("/confirmOrder", async ([FromBody] ConfirmOrderRequest request, ISender sender) =>
+        {
+
+            ConfirmOrderCommand createOrderCommand = new ConfirmOrderCommand() { Id = request.OrderId };
 
             var result = await sender.Send(createOrderCommand);
 

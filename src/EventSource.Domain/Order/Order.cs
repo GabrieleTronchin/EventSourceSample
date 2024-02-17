@@ -8,24 +8,34 @@ public class OrderEntity
 
     public static OrderEntity Create(string description)
     {
-        if (string.IsNullOrWhiteSpace(description))
-            throw new ArgumentNullException("description");
-
-        return new OrderEntity() { Id = Guid.NewGuid(), Description = description };
+        return new OrderEntity()
+        {
+            Id = Guid.NewGuid(),
+            Description = description,
+            Status = OrderStatus.New,
+            LastTimeModified = DateTime.UtcNow
+        };
     }
 
-    public void RequestPayment()
+    public void ValidateEntity()
     {
-        PaymentPending = true;
+
+        if (string.IsNullOrWhiteSpace(Description))
+            throw new ArgumentNullException(nameof(Description));
+
     }
 
-    public void Purchase()
-    {
-        Purchased = true;
-    }
+    public Guid Id { get; set; }
+    public string Description { get; set; }
+    public OrderStatus Status { get; set; }
+    public DateTime LastTimeModified { get; set; }
 
-    public Guid Id { get; private set; }
-    public string Description { get; private set; }
-    public bool Purchased { get; private set; }
-    public bool PaymentPending { get; private set; }
+}
+
+public enum OrderStatus
+{
+    New,
+    Accepted,
+    OnGoing,
+    Completed
 }
