@@ -15,7 +15,7 @@ public class GetOrderStateQueryHandler : IRequestHandler<GetAllOrdersCommand, IE
 
     public async Task<IEnumerable<OrderReadModel>> Handle(GetAllOrdersCommand request, CancellationToken cancellationToken)
     {
-        
+        throw new NotImplementedException();
     }
 
 
