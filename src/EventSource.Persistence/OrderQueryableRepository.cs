@@ -16,6 +16,16 @@ namespace EventSource.Persistence
             return querySession.Query<OrderEntity>().Where(filter);
         }
 
+        public Task<OrderEntity?> GetAggregateAsyncSingleAsync(Guid id, CancellationToken cancel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<OrderEntity?> GetAggregateLiveSingleAsync(Guid id, CancellationToken cancel)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<OrderEntity?> GetSingleAsync(Guid id, CancellationToken cancel)
         {
             return await querySession.Query<OrderEntity>().Where(x => x.Id == id).FirstOrDefaultAsync(cancel);
