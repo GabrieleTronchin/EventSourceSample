@@ -19,7 +19,7 @@ public class OrderQueriesHandler : IRequestHandler<GetAllOrdersCommand, IEnumera
 
     public async Task<IEnumerable<OrderReadModel>> Handle(GetAllOrdersCommand request, CancellationToken cancellationToken)
     {
-        return _repository.Get().Select(x => new OrderReadModel() { Id=x.Id, Description=x.Description });
+        return _repository.Get().Select(x => new OrderReadModel() { Id = x.Id, Description = x.Description });
     }
 
 
