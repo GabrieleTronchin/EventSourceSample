@@ -1,5 +1,6 @@
 ﻿using EventSource.Application.Orders.Commands;
 using EventSource.Application.Orders.Queries;
+using EventSource.Presentation.Orders.Events;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -30,7 +31,7 @@ public static class OrderModel
         });
 
 
-        app.MapPost("/orderReady", async ([FromBody] OrderReadyRequest request, ISender sender) =>
+        app.MapPut("/orderReady", async ([FromBody] OrderReadyRequest request, ISender sender) =>
         {
 
             OrderReadyCommand createOrderCommand = new OrderReadyCommand() { Id = request.OrderId };
@@ -41,7 +42,7 @@ public static class OrderModel
 
         });
 
-        app.MapPost("/acceptOrder", async ([FromBody] AcceptOrderRequest request, ISender sender) =>
+        app.MapPut("/acceptOrder", async ([FromBody] AcceptOrderRequest request, ISender sender) =>
         {
 
             AcceptOrderCommand createOrderCommand = new AcceptOrderCommand() { Id = request.OrderId };
@@ -54,7 +55,7 @@ public static class OrderModel
 
 
 
-        app.MapPost("/confirmOrder", async ([FromBody] ConfirmOrderRequest request, ISender sender) =>
+        app.MapPut("/confirmOrder", async ([FromBody] ConfirmOrderRequest request, ISender sender) =>
         {
 
             ConfirmOrderCommand createOrderCommand = new ConfirmOrderCommand() { Id = request.OrderId };

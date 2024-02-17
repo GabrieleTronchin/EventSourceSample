@@ -1,4 +1,4 @@
-﻿using EventSource.Presentation.Orders;
+﻿using EventSource.Presentation.Orders.Events;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 

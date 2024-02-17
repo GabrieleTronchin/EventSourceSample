@@ -2,7 +2,7 @@
 using EventSource.Domain.Order;
 using MediatR;
 
-namespace EventSource.Application.Orders.Handlers;
+namespace EventSource.Application.Orders.QueryHandlers;
 
 /// <summary>
 /// Just a sample of read model

@@ -10,11 +10,15 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Cre
 {
     private readonly ILogger<CreateOrderCommandHandler> _logger;
     private readonly IRepository<OrderEntity> _repository;
+    private readonly IEventRepository _eventRepository;
 
-    public CreateOrderCommandHandler(ILogger<CreateOrderCommandHandler> logger, IRepository<OrderEntity> orderRepository)
+    public CreateOrderCommandHandler(ILogger<CreateOrderCommandHandler> logger,
+                                    IRepository<OrderEntity> repository,
+                                    IEventRepository eventRepository)
     {
         _logger = logger;
-        _repository = orderRepository;
+        _repository = repository;
+        _eventRepository = eventRepository;
     }
 
     public async Task<CreateOrderCommandComplete> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -22,6 +26,8 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Cre
         OrderEntity order = OrderEntity.Create(request.Description);
 
         await _repository.AddAsync(order);
+
+        await _eventRepository.StartStream(order.Id);
 
         return new CreateOrderCommandComplete() { Id = order.Id };
     }

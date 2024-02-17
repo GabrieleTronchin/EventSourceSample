@@ -1,4 +1,4 @@
-﻿namespace EventSource.Presentation.Orders
+﻿namespace EventSource.Presentation.Orders.Events
 {
     public record OrderReadyRequest
     {
