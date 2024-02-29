@@ -11,6 +11,7 @@
 	</ItemGroup>
 	
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Application.Abstractions\Application.Abstractions.csproj" />
     <ProjectReference Include="..\EventSource.Domain\EventSource.Domain.csproj" />
     <ProjectReference Include="..\EventSource.Persistence\EventSource.Persistence.csproj" />
   </ItemGroup>
