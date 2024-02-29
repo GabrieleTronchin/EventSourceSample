@@ -1,11 +1,9 @@
-﻿using EventSource.Domain.Order;
+﻿using EventSource.Application.Orders.Queries.Validators;
+using EventSource.Domain.Order;
 using EventSource.Persistence;
-using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
-using Microsoft.AspNetCore.Identity;
-using EventSource.Application.Orders.Commands.Validators;
-using EventSource.Application.Orders.Queries.Validators;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EventSource.Application;
 

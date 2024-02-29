@@ -1,7 +1,5 @@
 ﻿using EventSource.Application.Orders.Queries;
-using EventSource.Application.Orders.Queries.Validators;
 using EventSource.Domain.Order;
-using FluentValidation;
 using MediatR;
 
 namespace EventSource.Application.Orders.QueryHandlers;

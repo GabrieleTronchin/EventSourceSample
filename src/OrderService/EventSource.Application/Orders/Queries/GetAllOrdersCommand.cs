@@ -1,5 +1,4 @@
 ﻿using Application.Abstractions;
-using MediatR;
 
 namespace EventSource.Application.Orders.Queries;
 
