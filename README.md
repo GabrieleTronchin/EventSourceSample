@@ -6,11 +6,20 @@
 
 ## Overview
 
-Minimal API
-CQRS
-EventSource
-PostgressDB
-DDD
+ - Minimal API
+ - CQRS
+ - EventSource
+ - PostgressDB
+ - DDD
+
+TODO:
+Fluent Validation
+Use MediatoR Pipeline
+
+
+## MartenSamples
+
+OrderEndpoint don't use EventSource, it use marten just to save and get datas.
 
 
 //TODO Extract a template for DDD from this proj
