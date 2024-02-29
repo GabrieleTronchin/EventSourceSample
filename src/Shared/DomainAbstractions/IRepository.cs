@@ -1,4 +1,4 @@
-﻿namespace EventSource.Domain.Primitives;
+﻿namespace Domain.Abstractions;
 
 public interface IRepository<in T> where T : class
 {

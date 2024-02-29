@@ -1,10 +1,10 @@
-﻿using EventSource.Application.Orders.Commands;
+﻿using Domain.Abstractions;
+using EventSource.Application.Orders.Commands;
 using EventSource.Domain.Order;
-using EventSource.Domain.Primitives;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace EventSource.Application.Orders.Handlers;
+namespace EventSource.Application.Orders.CommandHandlers;
 
 public class ConfirmOrderCommandHandler : IRequestHandler<ConfirmOrderCommand, ConfirmOrderCommandComplete>
 {

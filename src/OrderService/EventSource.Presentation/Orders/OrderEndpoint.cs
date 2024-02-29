@@ -11,9 +11,9 @@ public static class OrderEndpoint
     public static void AddOrdersEnpoint(this IEndpointRouteBuilder app)
     {
 
-        app.MapGet("/orders", async (ISender sender) =>
+        app.MapGet("/orders/{search?}", async (ISender sender, string? search) =>
         {
-            var result = await sender.Send(new GetAllOrdersCommand());
+            var result = await sender.Send(new GetAllOrdersCommand() { SeachOnDescription = search });
             return Results.Ok(result);
         }).WithOpenApi();
 
@@ -21,7 +21,7 @@ public static class OrderEndpoint
         app.MapPost("/createNewOrder", async ([FromBody] CreateOrderRequest request, ISender sender) =>
         {
 
-            CreateOrderCommand createOrderCommand = new CreateOrderCommand() { Description = request.Description };
+            CreateOrderCommand createOrderCommand = new() { Description = request.Description };
 
             var result = await sender.Send(createOrderCommand);
 
@@ -33,7 +33,7 @@ public static class OrderEndpoint
         app.MapPut("/orderReady", async ([FromBody] OrderReadyRequest request, ISender sender) =>
         {
 
-            OrderReadyCommand createOrderCommand = new OrderReadyCommand() { Id = request.OrderId };
+            OrderReadyCommand createOrderCommand = new() { Id = request.OrderId };
 
             var result = await sender.Send(createOrderCommand);
 
@@ -44,7 +44,7 @@ public static class OrderEndpoint
         app.MapPut("/acceptOrder", async ([FromBody] AcceptOrderRequest request, ISender sender) =>
         {
 
-            AcceptOrderCommand createOrderCommand = new AcceptOrderCommand() { Id = request.OrderId };
+            AcceptOrderCommand createOrderCommand = new() { Id = request.OrderId };
 
             var result = await sender.Send(createOrderCommand);
 
@@ -57,7 +57,7 @@ public static class OrderEndpoint
         app.MapPut("/confirmOrder", async ([FromBody] ConfirmOrderRequest request, ISender sender) =>
         {
 
-            ConfirmOrderCommand createOrderCommand = new ConfirmOrderCommand() { Id = request.OrderId };
+            ConfirmOrderCommand createOrderCommand = new() { Id = request.OrderId };
 
             var result = await sender.Send(createOrderCommand);
 

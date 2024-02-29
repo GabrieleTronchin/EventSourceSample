@@ -11,9 +11,12 @@ namespace EventSource.Persistence
             return querySession.Query<OrderEntity>();
         }
 
-        public IEnumerable<OrderEntity> Get(Expression<Func<OrderEntity, bool>> filter, CancellationToken cancel)
+        public async Task<IEnumerable<OrderEntity>> Get(Expression<Func<OrderEntity, bool>>? filter, CancellationToken cancel)
         {
-            return querySession.Query<OrderEntity>().Where(filter);
+            if (filter == null)
+                return await querySession.Query<OrderEntity>().Take(1000).ToListAsync();
+            else
+                return await querySession.Query<OrderEntity>().Where(filter).ToListAsync();
         }
 
         public Task<OrderEntity?> GetAggregateAsyncSingleAsync(Guid id, CancellationToken cancel)

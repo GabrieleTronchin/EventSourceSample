@@ -1,4 +1,4 @@
-﻿namespace EventSource.Application.Primitives;
+﻿namespace Application.Abstractions;
 
 public abstract class IntegrationEvent
 {

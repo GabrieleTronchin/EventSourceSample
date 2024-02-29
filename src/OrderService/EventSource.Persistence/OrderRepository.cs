@@ -1,5 +1,5 @@
-﻿using EventSource.Domain.Order;
-using EventSource.Domain.Primitives;
+﻿using Domain.Abstractions;
+using EventSource.Domain.Order;
 using Marten;
 
 
