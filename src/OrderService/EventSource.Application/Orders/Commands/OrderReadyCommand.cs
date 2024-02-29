@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Application.Abstractions;
+using MediatR;
 
 namespace EventSource.Application.Orders.Commands;
 
-public class OrderReadyCommand : IRequest<OrderReadyCommandComplete>
+public class OrderReadyCommand : ICommand<OrderReadyCommandComplete>
 {
     public Guid Id { get; set; }
 }

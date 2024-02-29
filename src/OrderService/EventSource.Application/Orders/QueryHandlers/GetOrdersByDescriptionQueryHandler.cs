@@ -1,11 +1,13 @@
 ﻿using EventSource.Application.Orders.Queries;
+using EventSource.Application.Orders.Queries.Validators;
 using EventSource.Domain.Order;
+using FluentValidation;
 using MediatR;
 
 namespace EventSource.Application.Orders.QueryHandlers;
 
 
-public class GetOrdersByDescriptionQueryHandler : IRequestHandler<GetOrdersByDescriptionCommand, IEnumerable<OrderReadModel>>
+internal sealed class GetOrdersByDescriptionQueryHandler : IRequestHandler<GetOrdersByDescriptionCommand, IEnumerable<OrderReadModel>>
 {
     private readonly IOrderQueryableRepository _repository;
 
@@ -17,13 +19,9 @@ public class GetOrdersByDescriptionQueryHandler : IRequestHandler<GetOrdersByDes
     public async Task<IEnumerable<OrderReadModel>> Handle(GetOrdersByDescriptionCommand request, CancellationToken cancellationToken)
     {
 
-        if (string.IsNullOrWhiteSpace(request.Description))
-            throw new ArgumentNullException(nameof(request.Description));
+        var order = await _repository.Get(x => x.Description == request.Description, cancellationToken);
 
-
-        return _repository
-                        .Get(x => x.Description == request.Description, cancellationToken)
-                        .Select(x => new OrderReadModel() { Id = x.Id, Description = x.Description });
+        return order.Select(x => new OrderReadModel() { Id = x.Id, Description = x.Description });
 
     }
 

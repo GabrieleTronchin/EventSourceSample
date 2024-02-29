@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Application.Abstractions;
+using MediatR;
 
 namespace EventSource.Application.Orders.Commands;
 
-public class CreateOrderCommand : IRequest<CreateOrderCommandComplete>
+public class CreateOrderCommand : ICommand<CreateOrderCommandComplete>
 {
     public string Description { get; set; }
 }

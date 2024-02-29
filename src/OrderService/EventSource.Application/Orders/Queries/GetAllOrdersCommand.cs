@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using Application.Abstractions;
+using MediatR;
 
-namespace EventSource.Application.Orders.Queries
+namespace EventSource.Application.Orders.Queries;
+
+public class GetAllOrdersCommand : IQuery<IEnumerable<OrderReadModel>>
 {
-    public class GetAllOrdersCommand : IRequest<IEnumerable<OrderReadModel>>
-    {
-        public string? SeachOnDescription { get; set; }
-    }
+    public string? SeachOnDescription { get; set; }
 }
