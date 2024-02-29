@@ -1,5 +1,6 @@
 ﻿using Domain.Abstractions;
 using EventSource.Domain.Order;
+using EventSource.Domain.Rider;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,8 @@ public static class ServicesExtensions
         });
 
         services.AddTransient<IRepository<OrderEntity>, OrderRepository>();
+        services.AddTransient<IRepository<RiderEntity>, RiderRepository>();
+
 
         return services;
     }

@@ -11,13 +11,15 @@
         {
             return new RiderEntity()
             {
+                Id = Guid.NewGuid(),
                 OrderId = orderId,
-                CurrentLocation = location
+                StartLocation = location
             };
         }
+        public Guid Id { get; set; }
 
         public Guid OrderId { get; set; }
-        public Location CurrentLocation { get; set; }
+        public Location StartLocation { get; set; }
 
     }
 }

@@ -12,7 +12,6 @@ public class OrderEntity
         {
             Id = Guid.NewGuid(),
             Description = description,
-            Status = OrderStatus.New,
             LastTimeModified = DateTime.UtcNow
         };
     }
@@ -25,15 +24,6 @@ public class OrderEntity
 
     public Guid Id { get; set; }
     public string Description { get; set; }
-    public OrderStatus Status { get; set; }
     public DateTime LastTimeModified { get; set; }
 
-}
-
-public enum OrderStatus
-{
-    New,
-    Accepted,
-    OnGoing,
-    Completed
 }

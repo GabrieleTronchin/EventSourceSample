@@ -1,3 +1,3 @@
 ﻿namespace EventSource.Domain;
 
-public record Location(short Latitude, short Longitude);
+public record Location(int Latitude, int Longitude);

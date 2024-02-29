@@ -15,21 +15,23 @@ public class AcceptOrderCommandHandler : IRequestHandler<AcceptOrderCommand, Acc
     private readonly IEventRepository _eventRepository;
 
     public AcceptOrderCommandHandler(ILogger<AcceptOrderCommandHandler> logger,
-                                    IRepository<RiderEntity> riderRepository)
+                                    IRepository<RiderEntity> riderRepository,
+                                    IEventRepository eventRepository)
+
     {
         _logger = logger;
         _riderRepository = riderRepository;
+        _eventRepository = eventRepository;
     }
 
     public async Task<AcceptOrderCommandComplete> Handle(AcceptOrderCommand request, CancellationToken cancellationToken)
     {
         var rider = RiderEntity.Create(request.Id, new Location(0, 0));
 
-
         await _riderRepository.AddAsync(rider);
 
+        await _eventRepository.StartStream(rider.Id);
 
-        await _eventRepository.Append(request.Id, new { Status = OrderStatus.Accepted });
         return new AcceptOrderCommandComplete() { Id = request.Id };
     }
 }
