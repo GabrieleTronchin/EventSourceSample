@@ -5,6 +5,7 @@ Project Objective: Simulate a Food Delivery Application.
 Main Entities:
 - Order
 - Rider
+
 Flow Description:
 
 1. An order is initially created with a default status (New).
