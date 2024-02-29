@@ -1,4 +1,4 @@
-﻿using EventSource.Application.Orders.Queries.Validators;
+﻿using Application.Abstractions;
 using EventSource.Domain.Order;
 using EventSource.Persistence;
 using FluentValidation;

@@ -19,10 +19,8 @@ public class OrderEntity
 
     public void ValidateEntity()
     {
-
         if (string.IsNullOrWhiteSpace(Description))
             throw new ArgumentNullException(nameof(Description));
-
     }
 
     public Guid Id { get; set; }

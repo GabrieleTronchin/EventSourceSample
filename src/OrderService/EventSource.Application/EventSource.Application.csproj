@@ -25,4 +25,9 @@
     <PackageReference Include="Quartz" Version="3.8.0" />
   </ItemGroup>
 
+
+	<ItemGroup>
+	  <Folder Include="Orders\Commands\Validators\" />
+	</ItemGroup>
+
 </Project>

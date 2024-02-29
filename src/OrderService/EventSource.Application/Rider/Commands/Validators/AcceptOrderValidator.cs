@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace EventSource.Application.Orders.Commands.Validators;
+namespace EventSource.Application.Rider.Commands.Validators;
 
 
 public sealed class AcceptOrderValidator : AbstractValidator<AcceptOrderCommand>

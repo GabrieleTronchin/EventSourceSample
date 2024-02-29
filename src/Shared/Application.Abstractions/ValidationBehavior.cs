@@ -3,7 +3,7 @@ using MediatR;
 using System.Windows.Input;
 
 
-namespace EventSource.Application.Orders.Queries.Validators
+namespace Application.Abstractions
 {
     public sealed class ValidationBehavior<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>

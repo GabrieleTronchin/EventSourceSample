@@ -41,16 +41,7 @@ public static class OrderEndpoint
 
         });
 
-        app.MapPut("/acceptOrder", async ([FromBody] AcceptOrderRequest request, ISender sender) =>
-        {
 
-            AcceptOrderCommand createOrderCommand = new() { Id = request.OrderId };
-
-            var result = await sender.Send(createOrderCommand);
-
-            return Results.Created();
-
-        });
 
 
 

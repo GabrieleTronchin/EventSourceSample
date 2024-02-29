@@ -1,4 +1,4 @@
-﻿namespace EventSource.Presentation.Orders.Events
+﻿namespace EventSource.Presentation.Rider.Events
 {
     public record AcceptOrderRequest
     {
