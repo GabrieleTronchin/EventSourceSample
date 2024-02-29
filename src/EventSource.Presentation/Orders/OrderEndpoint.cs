@@ -6,14 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventSource.Presentation.Orders;
 
-public static class OrderModel
+public static class OrderEndpoint
 {
     public static void AddOrdersEnpoint(this IEndpointRouteBuilder app)
     {
 
         app.MapGet("/orders", async (ISender sender) =>
         {
-            //TODO Define Query Commands
             var result = await sender.Send(new GetAllOrdersCommand());
             return Results.Ok(result);
         }).WithOpenApi();
