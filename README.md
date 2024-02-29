@@ -1,4 +1,4 @@
-# Sample project Include Marten Db (Postgres), CQRS, WebAPI
+# Sample Food Delivery API With Marten
 
 Project Objective: Simulate a Food Delivery Application.
 
@@ -19,11 +19,18 @@ Flow Description:
  
 > Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-8.0
+
 > Publishing your app as Native AOT produces an app that's self-contained and that has been ahead-of-time (AOT) compiled to native code. Native AOT apps have faster startup time and smaller memory footprints. These apps can run on machines that don't have the .NET runtime installed.
+
+https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net7%2Cwindows
+
 
  ### CQRS
 
 > CQRS stands for Command and Query Responsibility Segregation, a pattern that separates read and update operations for a data store. Implementing CQRS in your application can maximize its performance, scalability, and security.
+
+https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs
 
  ### EventSource with Marten
 
