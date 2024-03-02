@@ -1,8 +1,8 @@
-﻿namespace EventSource.Domain.Order;
+﻿namespace EventSource.Domain.OrderAggregate;
 
-public class OrderAggregate
+public class OrderAggregateEntity
 {
-    public OrderAggregate()
+    public OrderAggregateEntity()
     {
     }
 
@@ -12,6 +12,8 @@ public class OrderAggregate
     public Guid RiderId { get; set; }
 
     public Location CurrentLocation { get; set; }
+
+    public int Traveled { get; set; }
 
 
 }

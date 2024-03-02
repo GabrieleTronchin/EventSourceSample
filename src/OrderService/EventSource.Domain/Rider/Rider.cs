@@ -13,13 +13,13 @@
             {
                 Id = Guid.NewGuid(),
                 OrderId = orderId,
-                StartLocation = location
+                Location = location
             };
         }
         public Guid Id { get; set; }
 
         public Guid OrderId { get; set; }
-        public Location StartLocation { get; set; }
+        public Location Location { get; set; }
 
     }
 }

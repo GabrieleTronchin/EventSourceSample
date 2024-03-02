@@ -1,15 +1,17 @@
 ﻿using Domain.Abstractions;
 using EventSource.Domain.Order;
-using EventSource.Domain.Rider;
 using Marten;
 
 
-namespace EventSource.Persistence;
+namespace EventSource.Persistence.Order;
 
-public class RiderRepository(IDocumentStore store) : IRepository<RiderEntity>, IEventRepository
+public class OrderRepository(IDocumentStore store) : IRepository<OrderEntity>
 {
 
-    public async Task AddAsync(RiderEntity entity)
+    //TODO Implement in a correct way
+    // https://www.youtube.com/watch?v=yWpuUHXLhYg&ab_channel=CodeOpinion
+
+    public async Task AddAsync(OrderEntity entity)
     {
         using var session = await store.LightweightSerializableSessionAsync();
         session.Store(entity);

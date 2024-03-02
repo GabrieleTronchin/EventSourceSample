@@ -1,6 +1,8 @@
 ﻿using Domain.Abstractions;
 using EventSource.Domain.Order;
 using EventSource.Domain.Rider;
+using EventSource.Persistence.Order;
+using EventSource.Persistence.Rider;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
 

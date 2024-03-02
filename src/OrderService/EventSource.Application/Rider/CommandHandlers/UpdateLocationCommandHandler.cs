@@ -12,7 +12,7 @@ public class UpdateLocationCommandHandler : IRequestHandler<UpdateLocationComman
     private readonly IEventRepository _eventRepository;
 
     public UpdateLocationCommandHandler(
-        ILogger<UpdateLocationCommandHandler> logger, 
+        ILogger<UpdateLocationCommandHandler> logger,
         IEventRepository eventRepository)
     {
         _logger = logger;
@@ -21,7 +21,7 @@ public class UpdateLocationCommandHandler : IRequestHandler<UpdateLocationComman
 
     public async Task<bool> Handle(UpdateLocationCommand request, CancellationToken cancellationToken)
     {
-       await _eventRepository.Append(request.RirderId, new Location(request.Latitute, request.Longitude));
-       return true; //TODO use a valid return 
+        await _eventRepository.Append(request.RirderId, new Location(request.Latitute, request.Longitude));
+        return true; //TODO use a valid return 
     }
 }

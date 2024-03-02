@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions;
 using EventSource.Domain.Order;
 using EventSource.Persistence;
+using EventSource.Persistence.Order;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

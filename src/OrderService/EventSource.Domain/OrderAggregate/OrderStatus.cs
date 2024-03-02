@@ -1,4 +1,4 @@
-﻿namespace EventSource.Domain.Order;
+﻿namespace EventSource.Domain.OrderAggregate;
 
 public enum OrderStatus
 {

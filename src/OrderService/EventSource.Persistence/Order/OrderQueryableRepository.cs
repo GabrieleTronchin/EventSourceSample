@@ -2,7 +2,7 @@
 using Marten;
 using System.Linq.Expressions;
 
-namespace EventSource.Persistence
+namespace EventSource.Persistence.Order
 {
     public class OrderQueryableRepository(IQuerySession querySession) : IOrderQueryableRepository
     {
@@ -17,16 +17,6 @@ namespace EventSource.Persistence
                 return await querySession.Query<OrderEntity>().Take(1000).ToListAsync();
             else
                 return await querySession.Query<OrderEntity>().Where(filter).ToListAsync();
-        }
-
-        public Task<OrderEntity?> GetAggregateAsyncSingleAsync(Guid id, CancellationToken cancel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<OrderEntity?> GetAggregateLiveSingleAsync(Guid id, CancellationToken cancel)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<OrderEntity?> GetSingleAsync(Guid id, CancellationToken cancel)

@@ -1,7 +1,6 @@
 ﻿using Domain.Abstractions;
 using EventSource.Application.Rider.Commands;
 using EventSource.Domain;
-using EventSource.Domain.Order;
 using EventSource.Domain.Rider;
 using MediatR;
 using Microsoft.Extensions.Logging;
