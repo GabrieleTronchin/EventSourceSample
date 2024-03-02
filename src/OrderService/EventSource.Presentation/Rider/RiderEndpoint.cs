@@ -11,7 +11,7 @@ public static class RiderEndpoint
     {
 
 
-        app.MapPut("/acceptOrder", async ([FromBody] AcceptOrderRequest request, ISender sender) =>
+        app.MapPut("/AcceptOrder", async ([FromBody] AcceptOrderRequest request, ISender sender) =>
         {
 
             AcceptOrderCommand createOrderCommand = new() { Id = request.OrderId };
@@ -23,7 +23,7 @@ public static class RiderEndpoint
         });
 
 
-        app.MapPut("/updateLocation", async ([FromBody] UpdateLocationRequest request, ISender sender) =>
+        app.MapPut("/UpdateLocation", async ([FromBody] UpdateLocationRequest request, ISender sender) =>
         {
 
             UpdateLocationCommand createOrderCommand = new()

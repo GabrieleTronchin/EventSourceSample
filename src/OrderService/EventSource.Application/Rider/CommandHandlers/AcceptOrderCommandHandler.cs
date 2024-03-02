@@ -11,11 +11,11 @@ public class AcceptOrderCommandHandler : IRequestHandler<AcceptOrderCommand, Acc
 {
     private readonly ILogger<AcceptOrderCommandHandler> _logger;
     private readonly IRepository<RiderEntity> _riderRepository;
-    private readonly IEventRepository _eventRepository;
+    private readonly IEventRepository<RiderEntity> _eventRepository;
 
     public AcceptOrderCommandHandler(ILogger<AcceptOrderCommandHandler> logger,
                                     IRepository<RiderEntity> riderRepository,
-                                    IEventRepository eventRepository)
+                                    IEventRepository<RiderEntity> eventRepository)
 
     {
         _logger = logger;

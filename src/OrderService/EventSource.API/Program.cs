@@ -1,6 +1,7 @@
 using EventSource.Application;
 using EventSource.Application.Account;
 using EventSource.Presentation.Orders;
+using EventSource.Presentation.Rider;
 
 
 var builder = WebApplication.CreateSlimBuilder(args);
@@ -16,9 +17,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-var myApiGroup = app.MapGroup("/v1");
+var order = app.MapGroup("/v1/order");
 
-myApiGroup.AddOrdersEnpoint();
+order.AddOrdersEnpoint();
+
+var rider = app.MapGroup("/v1/rider");
+rider.AddRiderEnpoint();
 
 if (app.Environment.IsDevelopment())
 {

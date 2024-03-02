@@ -1,4 +1,7 @@
-﻿namespace EventSource.Domain.OrderAggregate;
+﻿using EventSource.Domain.Rider;
+using System.Diagnostics;
+
+namespace EventSource.Domain.OrderAggregate;
 
 public class OrderAggregateEntity
 {
@@ -14,6 +17,9 @@ public class OrderAggregateEntity
     public Location CurrentLocation { get; set; }
 
     public int Traveled { get; set; }
+
+    internal void Apply(RiderEntity e) => CurrentLocation = e.Location;
+
 
 
 }

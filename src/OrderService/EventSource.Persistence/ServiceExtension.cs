@@ -1,7 +1,9 @@
 ﻿using Domain.Abstractions;
 using EventSource.Domain.Order;
+using EventSource.Domain.OrderAggregate;
 using EventSource.Domain.Rider;
 using EventSource.Persistence.Order;
+using EventSource.Persistence.OrderAggregate;
 using EventSource.Persistence.Rider;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +23,9 @@ public static class ServicesExtensions
 
         services.AddTransient<IRepository<OrderEntity>, OrderRepository>();
         services.AddTransient<IRepository<RiderEntity>, RiderRepository>();
-
+        services.AddTransient<IOrderAggregateQueryableRepository, OrderAggregateQueryableRepository>();
+        services.AddTransient<IOrderQueryableRepository, OrderQueryableRepository>();
+        services.AddTransient<IEventRepository<RiderEntity>, RiderRepository>();
 
         return services;
     }

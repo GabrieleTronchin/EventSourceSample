@@ -1,6 +1,7 @@
 ﻿using Domain.Abstractions;
 using EventSource.Application.Orders.Commands;
 using EventSource.Domain.Order;
+using EventSource.Domain.Rider;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -10,11 +11,11 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Cre
 {
     private readonly ILogger<CreateOrderCommandHandler> _logger;
     private readonly IRepository<OrderEntity> _repository;
-    private readonly IEventRepository _eventRepository;
+    private readonly IEventRepository<RiderEntity> _eventRepository;
 
     public CreateOrderCommandHandler(ILogger<CreateOrderCommandHandler> logger,
                                     IRepository<OrderEntity> repository,
-                                    IEventRepository eventRepository)
+                                    IEventRepository<RiderEntity> eventRepository)
     {
         _logger = logger;
         _repository = repository;
