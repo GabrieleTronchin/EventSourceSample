@@ -18,6 +18,12 @@ public static class OrderEndpoint
         }).WithOpenApi();
 
 
+        app.MapGet("/orders/{id?}", async (ISender sender, Guid orderId) =>
+        {
+            var result = await sender.Send(new GetOrderProjectionCommand() { OrderId = orderId });
+            return Results.Ok(result);
+        }).WithOpenApi();
+
         app.MapPost("/createNewOrder", async ([FromBody] CreateOrderRequest request, ISender sender) =>
         {
 
@@ -40,9 +46,6 @@ public static class OrderEndpoint
             return Results.Created();
 
         });
-
-
-
 
 
         app.MapPut("/confirmOrder", async ([FromBody] ConfirmOrderRequest request, ISender sender) =>
