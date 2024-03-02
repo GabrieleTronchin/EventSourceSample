@@ -1,5 +1,4 @@
 ﻿using EventSource.Domain.Rider;
-using System.Diagnostics;
 
 namespace EventSource.Domain.OrderAggregate;
 
