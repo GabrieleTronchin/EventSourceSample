@@ -5,20 +5,20 @@ using MediatR;
 
 namespace EventSource.Application.Orders.QueryHandlers;
 
-public class GetOrderProjectionQueryHandler : IRequestHandler<GetOrderLiveProjectionCommand, OrderStatusReadModel>
+public class GetOrderSnapshotProjectionQueryHandler : IRequestHandler<GetOrderSnapshotProjectionCommand, OrderStatusReadModel>
 {
     private readonly IOrderAggregateQueryableRepository _repository;
     private readonly IOrderQueryableRepository _orderRepository;
 
-    public GetOrderProjectionQueryHandler(IOrderAggregateQueryableRepository orderStreamRepository, IOrderQueryableRepository orderRepository)
+    public GetOrderSnapshotProjectionQueryHandler(IOrderAggregateQueryableRepository orderStreamRepository, IOrderQueryableRepository orderRepository)
     {
         _repository = orderStreamRepository;
         _orderRepository = orderRepository;
     }
 
-    public async Task<OrderStatusReadModel> Handle(GetOrderLiveProjectionCommand request, CancellationToken cancellationToken)
+    public async Task<OrderStatusReadModel> Handle(GetOrderSnapshotProjectionCommand request, CancellationToken cancellationToken)
     {
-        var orderAggregateProjection = await _repository.GetAggregateLiveSingleAsync(request.OrderId, cancellationToken);
+        var orderAggregateProjection = await _repository.GetAggregateAsyncSingleAsync(request.OrderId, cancellationToken);
 
 
         var order = await _orderRepository.GetSingleAsync(request.OrderId, cancellationToken)

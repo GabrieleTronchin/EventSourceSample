@@ -8,7 +8,7 @@ namespace EventSource.Persistence.OrderAggregate
 
         public async Task<OrderAggregateEntity?> GetAggregateAsyncSingleAsync(Guid id, CancellationToken cancel)
         {
-            throw new NotImplementedException(); // use projections and snapshot
+            return await querySession.LoadAsync<OrderAggregateEntity>(id, cancel);
         }
 
         public async Task<OrderAggregateEntity?> GetAggregateLiveSingleAsync(Guid id, CancellationToken cancel)

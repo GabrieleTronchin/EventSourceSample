@@ -11,16 +11,30 @@ public static class OrderEndpoint
     public static void AddOrdersEnpoint(this IEndpointRouteBuilder app)
     {
 
-        app.MapGet("Search/{search?}", async (ISender sender, string? search) =>
+        app.MapGet("All", async (ISender sender) =>
+        {
+            var result = await sender.Send(new GetAllOrdersCommand() { SeachOnDescription = null });
+            return Results.Ok(result);
+        }).WithOpenApi();
+
+
+        app.MapGet("Search/{search}", async (ISender sender, string search) =>
         {
             var result = await sender.Send(new GetAllOrdersCommand() { SeachOnDescription = search });
             return Results.Ok(result);
         }).WithOpenApi();
 
 
-        app.MapGet("/{id?}", async (ISender sender, Guid orderId) =>
+        app.MapGet("Live/{orderId}", async (ISender sender, Guid orderId) =>
         {
             var result = await sender.Send(new GetOrderLiveProjectionCommand() { OrderId = orderId });
+            return Results.Ok(result);
+        }).WithOpenApi();
+
+
+        app.MapGet("Snapshot/{orderId}", async (ISender sender, Guid orderId) =>
+        {
+            var result = await sender.Send(new GetOrderSnapshotProjectionCommand() { OrderId = orderId });
             return Results.Ok(result);
         }).WithOpenApi();
 

@@ -6,6 +6,7 @@ using EventSource.Persistence.Order;
 using EventSource.Persistence.OrderAggregate;
 using EventSource.Persistence.Rider;
 using Marten;
+using Marten.Events.Projections;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EventSource.Persistence;
@@ -19,6 +20,7 @@ public static class ServicesExtensions
             //TODO Move connection string on Appsettings
             const string connectionString = "host=localhost;port=5432;database=orders;username=sa;password=MySecretPassword1234;";
             options.Connection(connectionString);
+            options.Projections.Add<OrderAggregateProjection>(ProjectionLifecycle.Async);
         });
 
         services.AddTransient<IRepository<OrderEntity>, OrderRepository>();
