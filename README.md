@@ -16,10 +16,7 @@ Flow Description:
       1. Live Aggregation:  Evaluate all events from the database each time you request the data.
       2. Snapshot Aggregation: Store in memory using mattern.
 
-
-## Tech involved
-
- ### Minimal API with AOT Compilation
+ ## Minimal API with AOT Compilation
  
 > Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
@@ -32,7 +29,7 @@ https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net7%2C
 NOTE: Marten and projection can't work with aot compilation casue dynamic generetated code is not allowed.
 
 
- ### Event Sourcing and CQRS in Microservices
+ ## Event Sourcing and CQRS in Microservices
 
 **What is CQRS?**
 
@@ -78,7 +75,7 @@ The combination of Event Sourcing and CQRS offers several advantages when applie
 4. Resilience and Fault Tolerance: Event Sourcing enhances resilience by allowing the reconstruction of application state after a failure. CQRS helps isolate errors and failures in the write path from affecting the read path.
 5. Support for Complex Domains: Event Sourcing allows you to capture complex domain behavior accurately by recording fine-grained events. CQRS then enables tailored views of this data for various use cases.
 
-### DDD
+## DDD
 
 > Domain-driven design (DDD) is a software design approach that focuses on modeling the software to match the domain, or the subject area, that the software is intended for. DDD helps developers create software that is aligned with the business needs and terminology of the domain experts, users, and stakeholders.
 
@@ -88,7 +85,7 @@ The combination of Event Sourcing and CQRS offers several advantages when applie
 3. Flexibility & Scalability: DDD results in a modular and loosely-coupled design, making it easier to make changes and scale the application in the future.
 4. Quality Software: With a clear focus on the domain, there’s a better chance of getting the business logic right, leading to fewer bugs and improved software quality.
 
-### Test
+## Test
 
 ** Unit Test **
 //TODO
@@ -102,11 +99,11 @@ Mutation testing is used to design new software tests and evaluate the quality o
 
 On this project i integrate this test using Stryker. You can run the powershell on src folder to try it.
 
-### Docker and Docker Compose
+## Docker and Docker Compose
 
 Navigate to the 'docker' folder to access the Docker Compose file, facilitating the deployment of your persistence layer.
 
-### Usefull links
+## Usefull links
 
 [Rancher Desktop](https://rancherdesktop.io/): a free and comercial use for docker and/or Kubernates in local
 
