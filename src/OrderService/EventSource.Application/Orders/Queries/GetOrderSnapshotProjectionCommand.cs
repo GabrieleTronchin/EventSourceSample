@@ -2,7 +2,7 @@
 
 namespace EventSource.Application.Orders.Queries;
 
-public class GetOrderProjectionCommand : IQuery<OrderStatusReadModel>
+public class GetOrderSnapshotProjectionCommand : IQuery<OrderStatusReadModel>
 {
     public Guid OrderId { get; set; }
 }

@@ -20,7 +20,7 @@ public static class OrderEndpoint
 
         app.MapGet("/{id?}", async (ISender sender, Guid orderId) =>
         {
-            var result = await sender.Send(new GetOrderProjectionCommand() { OrderId = orderId });
+            var result = await sender.Send(new GetOrderLiveProjectionCommand() { OrderId = orderId });
             return Results.Ok(result);
         }).WithOpenApi();
 

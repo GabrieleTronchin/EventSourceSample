@@ -1,21 +1,29 @@
 ﻿using EventSource.Application.Orders.Queries;
+using EventSource.Domain.Order;
 using EventSource.Domain.OrderAggregate;
 using MediatR;
 
 namespace EventSource.Application.Orders.QueryHandlers;
 
-public class GetOrderProjectionQueryHandler : IRequestHandler<GetOrderProjectionCommand, OrderStatusReadModel>
+public class GetOrderProjectionQueryHandler : IRequestHandler<GetOrderLiveProjectionCommand, OrderStatusReadModel>
 {
     private readonly IOrderAggregateQueryableRepository _repository;
+    private readonly IOrderQueryableRepository _orderRepository;
 
-    public GetOrderProjectionQueryHandler(IOrderAggregateQueryableRepository orderRepository)
+    public GetOrderProjectionQueryHandler(IOrderAggregateQueryableRepository orderStreamRepository, IOrderQueryableRepository orderRepository)
     {
-        _repository = orderRepository;
+        _repository = orderStreamRepository;
+        _orderRepository = orderRepository;
     }
 
-    public async Task<OrderStatusReadModel> Handle(GetOrderProjectionCommand request, CancellationToken cancellationToken)
+    public async Task<OrderStatusReadModel> Handle(GetOrderLiveProjectionCommand request, CancellationToken cancellationToken)
     {
         var orderAggregateProjection = await _repository.GetAggregateLiveSingleAsync(request.OrderId, cancellationToken);
+
+
+        var order = await _orderRepository.GetSingleAsync(request.OrderId, cancellationToken)
+                    ?? throw new InvalidOperationException($"Order not found {request.OrderId}");
+
 
         if (orderAggregateProjection == null)
             throw new InvalidOperationException($"Order not found {request.OrderId}");
@@ -24,7 +32,9 @@ public class GetOrderProjectionQueryHandler : IRequestHandler<GetOrderProjection
         {
             Id = request.OrderId,
             CurrentLocation = orderAggregateProjection.CurrentPosition,
-            Description = "TODO",
+            InitialLocation = orderAggregateProjection.InitialPosition,
+            DestinationLocation = orderAggregateProjection.DestinationPosition,
+            Description = order.Description,
             Status = orderAggregateProjection.Status,
             Traveled = orderAggregateProjection.Traveled,
             RiderId = orderAggregateProjection.RiderId,

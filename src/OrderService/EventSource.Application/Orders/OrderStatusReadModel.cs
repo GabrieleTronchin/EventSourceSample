@@ -12,7 +12,11 @@ public class OrderStatusReadModel
 
     public Guid RiderId { get; set; }
 
+    public Location InitialLocation { get; set; }
+
     public Location CurrentLocation { get; set; }
+
+    public Location DestinationLocation { get; set; }
 
     public int Traveled { get; set; }
 

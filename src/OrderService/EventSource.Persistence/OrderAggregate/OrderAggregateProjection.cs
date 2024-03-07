@@ -1,16 +1,31 @@
 ﻿using EventSource.Domain.OrderAggregate;
-using EventSource.Domain.Rider;
+using EventSource.Domain.OrderAggregate.Events;
 using Marten.Events.Aggregation;
 
 namespace EventSource.Persistence.OrderAggregate;
 
-internal class OrderAggregateProjection : SingleStreamProjection<OrderAggregateEntity>
+public class OrderAggregateProjection : SingleStreamProjection<OrderAggregateEntity>
 {
     public OrderAggregateProjection()
     {
-        ProjectEvent<RiderEntity>((order, e) => order.CurrentPosition = e.Location);
-        ProjectEvent<RiderEntity>((order, e) => order.Traveled += e.Location.Longitude); // just a sample of an aggregate that you can calculate
-        ProjectEvent<RiderEntity>((order, e) => order.Status = OrderStatus.OnGoing); // TODO evalutate dinamically
+        ProjectEvent<OrderAccepted>((order, e) =>
+        {
+            order.RiderId = e.RiderId;
+            order.Status = OrderStatus.Accepted;
+            order.InitialPosition = e.InitialLocation;
+        });
+
+        ProjectEvent<OrderCompleted>((order, e) =>
+        {
+            order.Status = OrderStatus.Completed;
+            order.DestinationPosition = e.Destination;
+        });
+
+        ProjectEvent<UpdateOrderLocation>((order, e) =>
+        {
+            order.Status = OrderStatus.OnGoing;
+            order.Traveled += e.CurrentLocation.Longitude;
+        });
 
     }
 }
