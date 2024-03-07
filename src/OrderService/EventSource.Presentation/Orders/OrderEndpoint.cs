@@ -35,30 +35,6 @@ public static class OrderEndpoint
 
         });
 
-
-        app.MapPut("/Ready", async ([FromBody] OrderReadyRequest request, ISender sender) =>
-        {
-
-            OrderReadyCommand createOrderCommand = new() { Id = request.OrderId };
-
-            var result = await sender.Send(createOrderCommand);
-
-            return Results.Created();
-
-        });
-
-
-        app.MapPut("/Confirm", async ([FromBody] ConfirmOrderRequest request, ISender sender) =>
-        {
-
-            ConfirmOrderCommand createOrderCommand = new() { Id = request.OrderId };
-
-            var result = await sender.Send(createOrderCommand);
-
-            return Results.Created();
-
-        });
-
     }
 
 }

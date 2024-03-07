@@ -18,7 +18,7 @@ public static class RiderEndpoint
 
             var result = await sender.Send(createOrderCommand);
 
-            return Results.Created();
+            return Results.Accepted(null, result.Id);
 
         });
 
@@ -35,7 +35,7 @@ public static class RiderEndpoint
 
             var result = await sender.Send(createOrderCommand);
 
-            return Results.Created();
+            return Results.Accepted(null, result);
 
         });
 

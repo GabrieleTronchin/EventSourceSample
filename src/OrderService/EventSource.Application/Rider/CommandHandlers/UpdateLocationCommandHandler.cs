@@ -1,6 +1,7 @@
 ﻿using Domain.Abstractions;
 using EventSource.Application.Rider.Commands;
 using EventSource.Domain;
+using EventSource.Domain.OrderAggregate.Events;
 using EventSource.Domain.Rider;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -22,7 +23,13 @@ public class UpdateLocationCommandHandler : IRequestHandler<UpdateLocationComman
 
     public async Task<UpdateLocationCommandComplete> Handle(UpdateLocationCommand request, CancellationToken cancellationToken)
     {
-        await _eventRepository.Append(request.RirderId, new Location(request.Latitute, request.Longitude));
+        await _eventRepository.Append(request.RirderId,
+            new UpdateOrderLocation
+            {
+                RiderId = request.RirderId,
+                CurrentLocation = new Location(request.Latitute, request.Longitude)
+            });
+
         return new UpdateLocationCommandComplete() { RirderId = request.RirderId };
     }
 }

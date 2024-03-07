@@ -23,7 +23,7 @@ public class GetOrderProjectionQueryHandler : IRequestHandler<GetOrderProjection
         return new OrderStatusReadModel()
         {
             Id = request.OrderId,
-            CurrentLocation = orderAggregateProjection.CurrentLocation,
+            CurrentLocation = orderAggregateProjection.CurrentPosition,
             Description = "TODO",
             Status = orderAggregateProjection.Status,
             Traveled = orderAggregateProjection.Traveled,

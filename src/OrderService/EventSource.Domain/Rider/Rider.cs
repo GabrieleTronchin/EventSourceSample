@@ -17,7 +17,6 @@
             };
         }
         public Guid Id { get; set; }
-
         public Guid OrderId { get; set; }
         public Location Location { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using Domain.Abstractions;
 using EventSource.Application.Rider.Commands;
 using EventSource.Domain;
+using EventSource.Domain.OrderAggregate.Events;
 using EventSource.Domain.Rider;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -30,6 +31,8 @@ public class AcceptOrderCommandHandler : IRequestHandler<AcceptOrderCommand, Acc
         await _riderRepository.AddAsync(rider);
 
         await _eventRepository.StartStream(rider.Id);
+
+        await _eventRepository.Append(request.Id, new OrderAccepted { RiderId = rider.Id, InitialLocation = rider.Location });
 
         return new AcceptOrderCommandComplete() { Id = request.Id };
     }
