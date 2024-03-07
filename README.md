@@ -79,7 +79,7 @@ The combination of Event Sourcing and CQRS offers several advantages when applie
 
 > Domain-driven design (DDD) is a software design approach that focuses on modeling the software to match the domain, or the subject area, that the software is intended for. DDD helps developers create software that is aligned with the business needs and terminology of the domain experts, users, and stakeholders.
 
-** Why Choose DDD? ** 
+**Why Choose DDD?** 
 1. Clarity of Business Logic: With DDD, the main business logic becomes the star of the show. It helps in keeping the core application logic free from the distractions of the UI and database code.
 2. Improved Communication: DDD uses a shared “Ubiquitous Language” that both developers and non-developers (like stakeholders or business experts) understand. It bridges the gap between the technical and non-technical members of a team.
 3. Flexibility & Scalability: DDD results in a modular and loosely-coupled design, making it easier to make changes and scale the application in the future.
@@ -87,11 +87,12 @@ The combination of Event Sourcing and CQRS offers several advantages when applie
 
 ## Test
 
-** Unit Test **
+**Unit Test**
+
 //TODO
 Conduct testing with NSubstitute for MOQ.
 
-** Mutation Test **
+**Mutation Test**
 
 An important metric in our code base is the code coverage percentage. This KPI is used to ascertain the percentage of code covered by automated tests.
 Another KPI that we can combine with it is the mutator score KPI. To detect this score, you should run some mutator tests.
