@@ -9,9 +9,13 @@ Main Entities:
 Flow Description:
 
 1. An order is initially created with a default status (New).
-2. A rider can accept an order.
-3. The rider updates their location to track the order's progress.
-4. Order Aggregate entity show the reault of order and rider updates
+2. A rider accpet an order, event stream start and an OrderAccepted event is dispatched.
+3. The rider updates their location to track the order's progress, a LocationUpdate event is dispatched for each new location.
+4. The Order Aggregate entity reflects the result of order and rider updates.
+    There are two ways to retrieve an aggregate:
+      1. Live Aggregation:  Evaluate all events from the database each time you request the data.
+      2. Snapshot Aggregation: Store in memory using mattern.
+
 
 ## Tech involved
 
@@ -63,11 +67,13 @@ https://github.com/FluentValidation/FluentValidation
 
 ### Add test sample with stryker and calulate KPI
 
-TODO
+Conduct testing with NSubstitute for MOQ.
+Include a Test Coverage File VS Extension.
+Integrate Stryker with PowerShell (PS1).
 
 ### Docker and Docker Compose
 
-TODO
+Navigate to the 'docker' folder to access the Docker Compose file, facilitating the deployment of your persistence layer.
 
 ### Usefull links
 
