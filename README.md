@@ -34,7 +34,7 @@ NOTE: Marten and projection can't work with aot compilation casue dynamic genere
 
  ### Event Sourcing and CQRS in Microservices
 
-[b]What is CQRS?[b]
+**What is CQRS?**
 
 > Command Query Responsibility Segregation (CQRS) is a pattern that separates the read and write operations of a system into distinct paths. In a CQRS architecture, commands represent requests to change the system’s state, while queries fetch data for reading purposes. By segregating these concerns, CQRS allows optimization of each path independently, enabling efficient scaling, performance tuning, and enhanced user experiences.
 
@@ -55,7 +55,7 @@ In combination with mediatR I use FluentValidation to validate Queries and Comma
 https://github.com/FluentValidation/FluentValidation
 
 
-[b]Event Sourcing[b]
+**Event Sourcing**
 
 > Event Sourcing, at its core, is a data storage pattern that captures every change to an application’s state as a sequence of immutable events. Unlike traditional approaches that store only the current state, Event Sourcing maintains a full history of state changes. This technique not only enables you to reconstruct the application’s past states but also provides an audit trail of how and why the system arrived at its current state.
 
@@ -66,7 +66,7 @@ Some info about:
 
 - https://martendb.io
 
-[b] Benefits of Event Sourcing and CQRS in Microservices [b]
+** Benefits of Event Sourcing and CQRS in Microservices **
 The combination of Event Sourcing and CQRS offers several advantages when applied to microservices-based applications:
 
 1. Historical Transparency: Event Sourcing ensures a comprehensive record of all state changes, providing historical transparency for auditing, compliance, and debugging purposes.
@@ -79,7 +79,7 @@ The combination of Event Sourcing and CQRS offers several advantages when applie
 
 > Domain-driven design (DDD) is a software design approach that focuses on modeling the software to match the domain, or the subject area, that the software is intended for. DDD helps developers create software that is aligned with the business needs and terminology of the domain experts, users, and stakeholders.
 
-[b] Why Choose DDD? [b] 
+** Why Choose DDD? ** 
 1. Clarity of Business Logic: With DDD, the main business logic becomes the star of the show. It helps in keeping the core application logic free from the distractions of the UI and database code.
 2. Improved Communication: DDD uses a shared “Ubiquitous Language” that both developers and non-developers (like stakeholders or business experts) understand. It bridges the gap between the technical and non-technical members of a team.
 3. Flexibility & Scalability: DDD results in a modular and loosely-coupled design, making it easier to make changes and scale the application in the future.
@@ -87,11 +87,11 @@ The combination of Event Sourcing and CQRS offers several advantages when applie
 
 ### Test
 
-[b] Unit Test [b]
+** Unit Test **
 //TODO
 Conduct testing with NSubstitute for MOQ.
 
-[b] Mutation Test [b]
+** Mutation Test **
 
 An important metric in our code base is the code coverage percentage. This KPI is used to ascertain the percentage of code covered by automated tests.
 Another KPI that we can combine with it is the mutator score KPI. To detect this score, you should run some mutator tests.
