@@ -40,6 +40,7 @@ public class OrderAggregateEntity
     {
         Status = OrderStatus.OnGoing;
         CurrentPosition = e.CurrentLocation;
+        Traveled += e.CurrentLocation.Longitude;
     }
 
 
