@@ -60,13 +60,16 @@ https://github.com/FluentValidation/FluentValidation
 > Event Sourcing, at its core, is a data storage pattern that captures every change to an application’s state as a sequence of immutable events. Unlike traditional approaches that store only the current state, Event Sourcing maintains a full history of state changes. This technique not only enables you to reconstruct the application’s past states but also provides an audit trail of how and why the system arrived at its current state.
 
 To implement the EventSource pattern on this project I use martendb.
+
 Some info about:
 
 > Marten is a .NET library that allows developers to use the Postgresql database as both a document database and a fully-featured event store -- with the document features serving as the out-of-the-box mechanism for projected "read side" views of your events.
 
 - https://martendb.io
 
-** Benefits of Event Sourcing and CQRS in Microservices **
+
+**Benefits of Event Sourcing and CQRS in Microservices**
+
 The combination of Event Sourcing and CQRS offers several advantages when applied to microservices-based applications:
 
 1. Historical Transparency: Event Sourcing ensures a comprehensive record of all state changes, providing historical transparency for auditing, compliance, and debugging purposes.
