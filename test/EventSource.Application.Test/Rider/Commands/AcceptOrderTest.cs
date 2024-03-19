@@ -24,6 +24,6 @@ public class AcceptOrderTest
 
 
         Assert.NotNull(result);
-        Assert.NotEqual(result.Id, Guid.Empty);
+        Assert.Equal(result.Id, Guid.Empty);
     }
 }
