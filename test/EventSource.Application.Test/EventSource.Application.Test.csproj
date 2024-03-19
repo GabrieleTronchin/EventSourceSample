@@ -27,4 +27,8 @@
     <ProjectReference Include="..\..\src\OrderService\EventSource.Application\EventSource.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Rider\Queries\" />
+  </ItemGroup>
+
 </Project>

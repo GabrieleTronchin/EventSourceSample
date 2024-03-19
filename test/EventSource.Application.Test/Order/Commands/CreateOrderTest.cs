@@ -5,7 +5,7 @@ using EventSource.Domain.Rider;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 
-namespace EventSource.Application.Test;
+namespace EventSource.Application.Test.Order.Commands;
 
 public class CreateOrderTest
 {
@@ -18,9 +18,9 @@ public class CreateOrderTest
 
         var eventRiderRepository = Substitute.For<IEventRepository<RiderEntity>>();
 
-        CreateOrderCommandHandler createOrderCommandHandler = new(logger, orderRepository, eventRiderRepository);
+        CreateOrderCommandHandler commandHandler = new(logger, orderRepository, eventRiderRepository);
 
-        var result = await createOrderCommandHandler.Handle(new Orders.Commands.CreateOrderCommand() { Description = "Test" }, CancellationToken.None);
+        var result = await commandHandler.Handle(new Orders.Commands.CreateOrderCommand() { Description = "Test" }, CancellationToken.None);
 
         Assert.NotEqual(result.Id, Guid.Empty);
     }
