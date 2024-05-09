@@ -1,6 +1,6 @@
-﻿using EventSource.Domain.Order;
+﻿using System.Linq.Expressions;
+using EventSource.Domain.Order;
 using Marten;
-using System.Linq.Expressions;
 
 namespace EventSource.Persistence.Order
 {
@@ -11,7 +11,10 @@ namespace EventSource.Persistence.Order
             return querySession.Query<OrderEntity>();
         }
 
-        public async Task<IEnumerable<OrderEntity>> Get(Expression<Func<OrderEntity, bool>>? filter, CancellationToken cancel)
+        public async Task<IEnumerable<OrderEntity>> Get(
+            Expression<Func<OrderEntity, bool>>? filter,
+            CancellationToken cancel
+        )
         {
             if (filter == null)
                 return await querySession.Query<OrderEntity>().Take(1000).ToListAsync();
@@ -21,8 +24,10 @@ namespace EventSource.Persistence.Order
 
         public async Task<OrderEntity?> GetSingleAsync(Guid id, CancellationToken cancel)
         {
-            return await querySession.Query<OrderEntity>().Where(x => x.Id == id).FirstOrDefaultAsync(cancel);
+            return await querySession
+                .Query<OrderEntity>()
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync(cancel);
         }
-
     }
 }

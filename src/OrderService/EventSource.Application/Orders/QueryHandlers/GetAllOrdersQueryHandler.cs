@@ -1,11 +1,12 @@
-﻿using EventSource.Application.Orders.Queries;
+﻿using System.Linq.Expressions;
+using EventSource.Application.Orders.Queries;
 using EventSource.Domain.Order;
 using MediatR;
-using System.Linq.Expressions;
 
 namespace EventSource.Application.Orders.QueryHandlers;
 
-public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersCommand, IEnumerable<OrderReadModel>>
+public class GetAllOrdersQueryHandler
+    : IRequestHandler<GetAllOrdersCommand, IEnumerable<OrderReadModel>>
 {
     private readonly IOrderQueryableRepository _repository;
 
@@ -14,7 +15,10 @@ public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersCommand, IEn
         _repository = orderRepository;
     }
 
-    public async Task<IEnumerable<OrderReadModel>> Handle(GetAllOrdersCommand request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<OrderReadModel>> Handle(
+        GetAllOrdersCommand request,
+        CancellationToken cancellationToken
+    )
     {
         Expression<Func<OrderEntity, bool>>? getExpression = default;
         CancellationToken cancellationToken1 = new();
@@ -25,6 +29,4 @@ public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersCommand, IEn
 
         return orders.Select(x => new OrderReadModel() { Id = x.Id, Description = x.Description });
     }
-
-
 }

@@ -3,7 +3,7 @@
 namespace EventSource.Application.Orders.Queries.Validators;
 
 public sealed class GetOrderByDescriptionValidator
-: AbstractValidator<GetOrdersByDescriptionCommand>
+    : AbstractValidator<GetOrdersByDescriptionCommand>
 {
     public GetOrderByDescriptionValidator()
     {

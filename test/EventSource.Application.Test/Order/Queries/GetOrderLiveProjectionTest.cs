@@ -16,14 +16,15 @@ public class GetOrderLiveProjectionTest
         var orderRepository = Substitute.For<IOrderQueryableRepository>();
         var orderAggregateRepository = Substitute.For<IOrderAggregateQueryableRepository>();
 
+        GetOrderLiveProjectionQueryHandler queryHandler =
+            new(orderAggregateRepository, orderRepository);
 
-        GetOrderLiveProjectionQueryHandler queryHandler = new(orderAggregateRepository, orderRepository);
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() =>
+        await Assert.ThrowsAsync<InvalidOperationException>(
+            () =>
                 queryHandler.Handle(
                     new Orders.Queries.GetOrderLiveProjectionCommand() { OrderId = new() },
-                    CancellationToken.None));
+                    CancellationToken.None
+                )
+        );
     }
-
-
 }

@@ -3,12 +3,12 @@ using EventSource.Domain.OrderAggregate;
 using EventSource.Domain.Rider;
 using Marten;
 
-
 namespace EventSource.Persistence.Rider;
 
-public class RiderRepository(IDocumentStore store) : IRepository<RiderEntity>, IEventRepository<RiderEntity>
+public class RiderRepository(IDocumentStore store)
+    : IRepository<RiderEntity>,
+        IEventRepository<RiderEntity>
 {
-
     public async Task AddAsync(RiderEntity entity)
     {
         using var session = await store.LightweightSerializableSessionAsync();
@@ -34,5 +34,4 @@ public class RiderRepository(IDocumentStore store) : IRepository<RiderEntity>, I
     {
         throw new NotImplementedException();
     }
-
 }

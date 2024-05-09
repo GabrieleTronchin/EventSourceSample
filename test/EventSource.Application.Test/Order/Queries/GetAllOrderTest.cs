@@ -16,11 +16,13 @@ public class GetAllOrderTest
 
         GetAllOrdersQueryHandler queryHandler = new(orderRepository);
 
-        var result = await queryHandler.Handle(new Orders.Queries.GetAllOrdersCommand(), CancellationToken.None);
+        var result = await queryHandler.Handle(
+            new Orders.Queries.GetAllOrdersCommand(),
+            CancellationToken.None
+        );
 
         Assert.Empty(result);
     }
-
 
     public async Task GetAllOrderWithSearch()
     {
@@ -30,9 +32,11 @@ public class GetAllOrderTest
 
         GetAllOrdersQueryHandler createOrderCommandHandler = new(orderRepository);
 
-        var result = await createOrderCommandHandler.Handle(new Orders.Queries.GetAllOrdersCommand() { SeachOnDescription = "Test" }, CancellationToken.None);
+        var result = await createOrderCommandHandler.Handle(
+            new Orders.Queries.GetAllOrdersCommand() { SeachOnDescription = "Test" },
+            CancellationToken.None
+        );
 
         Assert.Empty(result);
     }
-
 }

@@ -2,12 +2,10 @@
 using EventSource.Domain.Order;
 using Marten;
 
-
 namespace EventSource.Persistence.Order;
 
 public class OrderRepository(IDocumentStore store) : IRepository<OrderEntity>
 {
-
     //TODO Implement in a correct way
     // https://www.youtube.com/watch?v=yWpuUHXLhYg&ab_channel=CodeOpinion
 
@@ -36,5 +34,4 @@ public class OrderRepository(IDocumentStore store) : IRepository<OrderEntity>
     {
         throw new NotImplementedException();
     }
-
 }

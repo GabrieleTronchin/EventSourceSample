@@ -17,4 +17,3 @@ public abstract class IntegrationEvent
         return $"{nameof(CorrelationId)}:{CorrelationId} ; {nameof(CreationDate)}:{CreationDate}";
     }
 }
-

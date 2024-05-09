@@ -1,7 +1,6 @@
-﻿using FluentValidation;
+﻿using System.Windows.Input;
+using FluentValidation;
 using MediatR;
-using System.Windows.Input;
-
 
 namespace Application.Abstractions
 {
@@ -19,17 +18,19 @@ namespace Application.Abstractions
         public async Task<TResponse> Handle(
             TRequest request,
             RequestHandlerDelegate<TResponse> next,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken
+        )
         {
             var context = new ValidationContext<TRequest>(request);
 
             var validationFailures = await Task.WhenAll(
-                _validators.Select(validator => validator.ValidateAsync(context)));
+                _validators.Select(validator => validator.ValidateAsync(context))
+            );
 
             var errors = _validators
-                     .Select(x => x.Validate(context))
-                     .SelectMany(x => x.Errors)
-                     .Where(x => x != null);
+                .Select(x => x.Validate(context))
+                .SelectMany(x => x.Errors)
+                .Where(x => x != null);
 
             if (errors.Any())
             {

@@ -12,7 +12,9 @@ public static class ServicesExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServicesExtensions).Assembly));
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(ServicesExtensions).Assembly)
+        );
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         services.AddValidatorsFromAssembly(typeof(ServicesExtensions).Assembly);
@@ -21,6 +23,5 @@ public static class ServicesExtensions
         services.AddTransient<IOrderQueryableRepository, OrderQueryableRepository>();
 
         return services;
-
     }
 }

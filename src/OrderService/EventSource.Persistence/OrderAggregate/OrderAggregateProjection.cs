@@ -8,24 +8,29 @@ public class OrderAggregateProjection : SingleStreamProjection<OrderAggregateEnt
 {
     public OrderAggregateProjection()
     {
-        ProjectEvent<OrderAccepted>((order, e) =>
-        {
-            order.RiderId = e.RiderId;
-            order.Status = OrderStatus.Accepted;
-            order.InitialPosition = e.InitialLocation;
-        });
+        ProjectEvent<OrderAccepted>(
+            (order, e) =>
+            {
+                order.RiderId = e.RiderId;
+                order.Status = OrderStatus.Accepted;
+                order.InitialPosition = e.InitialLocation;
+            }
+        );
 
-        ProjectEvent<OrderCompleted>((order, e) =>
-        {
-            order.Status = OrderStatus.Completed;
-            order.DestinationPosition = e.Destination;
-        });
+        ProjectEvent<OrderCompleted>(
+            (order, e) =>
+            {
+                order.Status = OrderStatus.Completed;
+                order.DestinationPosition = e.Destination;
+            }
+        );
 
-        ProjectEvent<UpdateOrderLocation>((order, e) =>
-        {
-            order.Status = OrderStatus.OnGoing;
-            order.Traveled += e.CurrentLocation.Longitude;
-        });
-
+        ProjectEvent<UpdateOrderLocation>(
+            (order, e) =>
+            {
+                order.Status = OrderStatus.OnGoing;
+                order.Traveled += e.CurrentLocation.Longitude;
+            }
+        );
     }
 }

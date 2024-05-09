@@ -18,9 +18,13 @@ public class CreateOrderTest
 
         var eventRiderRepository = Substitute.For<IEventRepository<RiderEntity>>();
 
-        CreateOrderCommandHandler commandHandler = new(logger, orderRepository, eventRiderRepository);
+        CreateOrderCommandHandler commandHandler =
+            new(logger, orderRepository, eventRiderRepository);
 
-        var result = await commandHandler.Handle(new Orders.Commands.CreateOrderCommand() { Description = "Test" }, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            new Orders.Commands.CreateOrderCommand() { Description = "Test" },
+            CancellationToken.None
+        );
 
         Assert.NotEqual(result.Id, Guid.Empty);
     }
