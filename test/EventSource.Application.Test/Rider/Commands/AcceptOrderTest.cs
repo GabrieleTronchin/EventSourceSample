@@ -18,10 +18,13 @@ public class AcceptOrderTest
 
         var eventRiderRepository = Substitute.For<IEventRepository<RiderEntity>>();
 
-        AcceptOrderCommandHandler commandHandler = new(logger, riderRepository, eventRiderRepository);
+        AcceptOrderCommandHandler commandHandler =
+            new(logger, riderRepository, eventRiderRepository);
 
-        var result = await commandHandler.Handle(new AcceptOrderCommand() { Id = new(), RiderId = new() }, CancellationToken.None);
-
+        var result = await commandHandler.Handle(
+            new AcceptOrderCommand() { Id = new(), RiderId = new() },
+            CancellationToken.None
+        );
 
         Assert.NotNull(result);
         Assert.Equal(result.Id, Guid.Empty);

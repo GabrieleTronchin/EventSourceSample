@@ -4,9 +4,7 @@ namespace EventSource.Domain.OrderAggregate;
 
 public class OrderAggregateEntity
 {
-    public OrderAggregateEntity()
-    {
-    }
+    public OrderAggregateEntity() { }
 
     public Guid Id { get; set; }
 
@@ -19,7 +17,6 @@ public class OrderAggregateEntity
     public Location CurrentPosition { get; set; }
 
     public Location DestinationPosition { get; set; }
-
 
     public int Traveled { get; set; }
 
@@ -42,6 +39,4 @@ public class OrderAggregateEntity
         CurrentPosition = e.CurrentLocation;
         Traveled += e.CurrentLocation.Longitude;
     }
-
-
 }

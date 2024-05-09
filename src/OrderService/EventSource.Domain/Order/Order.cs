@@ -2,9 +2,7 @@
 
 public class OrderEntity
 {
-    private OrderEntity()
-    {
-    }
+    private OrderEntity() { }
 
     public static OrderEntity Create(string description)
     {
@@ -25,5 +23,4 @@ public class OrderEntity
     public Guid Id { get; set; }
     public string Description { get; set; }
     public DateTime LastTimeModified { get; set; }
-
 }

@@ -18,14 +18,18 @@ public static class ServicesExtensions
         services.AddMarten(options =>
         {
             //TODO Move connection string on Appsettings
-            const string connectionString = "host=localhost;port=5432;database=orders;username=sa;password=MySecretPassword1234;";
+            const string connectionString =
+                "host=localhost;port=5432;database=orders;username=sa;password=MySecretPassword1234;";
             options.Connection(connectionString);
             options.Projections.Add<OrderAggregateProjection>(ProjectionLifecycle.Async);
         });
 
         services.AddTransient<IRepository<OrderEntity>, OrderRepository>();
         services.AddTransient<IRepository<RiderEntity>, RiderRepository>();
-        services.AddTransient<IOrderAggregateQueryableRepository, OrderAggregateQueryableRepository>();
+        services.AddTransient<
+            IOrderAggregateQueryableRepository,
+            OrderAggregateQueryableRepository
+        >();
         services.AddTransient<IOrderQueryableRepository, OrderQueryableRepository>();
         services.AddTransient<IEventRepository<RiderEntity>, RiderRepository>();
 

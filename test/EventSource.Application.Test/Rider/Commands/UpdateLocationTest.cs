@@ -19,7 +19,15 @@ public class UpdateLocationTest
 
         UpdateLocationCommandHandler commandHandler = new(logger, eventRiderRepository);
 
-        var result = await commandHandler.Handle(new UpdateLocationCommand() { Latitute = 1, Longitude = 1, RirderId = new() }, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            new UpdateLocationCommand()
+            {
+                Latitute = 1,
+                Longitude = 1,
+                RirderId = new()
+            },
+            CancellationToken.None
+        );
 
         Assert.NotNull(result);
     }

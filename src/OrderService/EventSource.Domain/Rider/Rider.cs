@@ -1,11 +1,8 @@
 ﻿namespace EventSource.Domain.Rider
 {
-
     public class RiderEntity
     {
-        private RiderEntity()
-        {
-        }
+        private RiderEntity() { }
 
         public static RiderEntity Create(Guid orderId, Location location)
         {
@@ -16,9 +13,9 @@
                 Location = location
             };
         }
+
         public Guid Id { get; set; }
         public Guid OrderId { get; set; }
         public Location Location { get; set; }
-
     }
 }

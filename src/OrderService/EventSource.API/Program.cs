@@ -3,7 +3,6 @@ using EventSource.Application.Account;
 using EventSource.Presentation.Orders;
 using EventSource.Presentation.Rider;
 
-
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services.ConfigureHttpJsonOptions(options =>
@@ -30,4 +29,3 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.Run();
-

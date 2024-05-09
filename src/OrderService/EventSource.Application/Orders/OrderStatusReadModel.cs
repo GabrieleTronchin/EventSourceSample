@@ -19,5 +19,4 @@ public class OrderStatusReadModel
     public Location DestinationLocation { get; set; }
 
     public int Traveled { get; set; }
-
 }
